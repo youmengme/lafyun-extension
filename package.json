@@ -1,0 +1,132 @@
+{
+  "name": "lafyun",
+  "displayName": "lafyun",
+  "description": "this is lafyun vscode extension",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lafyun.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "extension.debugFunction",
+        "title": "调试云函数"
+      },
+      {
+        "command": "extension.pushFunction",
+        "title": "上传云函数"
+      },
+      {
+        "command": "extension.pushAndReleaseFunction",
+        "title": "发布云函数(自动上传)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.debugFunction",
+        "key": "ctrl+f6",
+        "mac": "cmd+f6",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.pushFunction",
+        "key": "ctrl+f7",
+        "mac": "cmd+f7",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.pushAndReleaseFunction",
+        "key": "ctrl+f9",
+        "mac": "cmd+f9",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorFocus",
+          "command": "extension.debugFunction",
+          "group": "navigation"
+        },
+        {
+          "when": "editorFocus",
+          "command": "extension.pushFunction",
+          "group": "navigation"
+        },
+        {
+          "when": "editorFocus",
+          "command": "extension.pushAndReleaseFunction",
+          "group": "navigation"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "functions",
+        "contents": "您当前暂未登录 请先登录.\n[登录](command:extension.login)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "lafyun",
+          "title": "lafyun",
+          "icon": "./src/assets/images/lafyun.svg"
+        }
+      ]
+    },
+    "views": {
+      "lafyun": [
+        {
+          "id": "functions",
+          "name": "云函数"
+        },
+        {
+          "id": "docs",
+          "name": "帮助文档"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.71.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
