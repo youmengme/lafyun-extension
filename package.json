@@ -16,8 +16,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "lafyun.helloWorld",
-        "title": "Hello World"
+        "command": "extension.openDocs",
+        "title": "打开文档"
+      },
+      {
+        "command": "extension.openDashboard",
+        "icon": "./src/assets/images/dashboard.svg",
+        "title": "打开控制台"
+      },
+      {
+        "command": "extension.refreshDocs",
+        "icon": "./src/assets/images/refresh.svg",
+        "title": "刷新云函数列表"
+      },
+      {
+        "command": "extension.logout",
+        "icon": "./src/assets/images/logout.svg",
+        "title": "退出登录"
+      },
+      {
+        "command": "extension.searchFunctions",
+        "icon": "./src/assets/images/search.svg",
+        "title": "搜索云函数"
       },
       {
         "command": "extension.debugFunction",
@@ -34,12 +54,6 @@
     ],
     "keybindings": [
       {
-        "command": "extension.debugFunction",
-        "key": "ctrl+f6",
-        "mac": "cmd+f6",
-        "when": "editorTextFocus"
-      },
-      {
         "command": "extension.pushFunction",
         "key": "ctrl+f7",
         "mac": "cmd+f7",
@@ -53,6 +67,31 @@
       }
     ],
     "menus": {
+      "view/title": [
+        {
+          "command": "extension.openDashboard",
+          "when": "view == functions",
+          "icon": "./src/assets/images/dashboard.svg",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.refreshDocs",
+          "when": "view == functions",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.logout",
+          "when": "view == functions",
+          "icon": "./src/assets/images/logout.svg",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.searchFunctions",
+          "when": "view == functions",
+          "icon": "./src/assets/images/search.svg",
+          "group": "navigation"
+        }
+      ],
       "editor/context": [
         {
           "when": "editorFocus",
